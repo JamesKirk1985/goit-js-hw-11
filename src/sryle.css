@@ -1,0 +1,28 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.photo-card {
+  width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.photo {
+  overflow: hidden;
+  min-width: 300px;
+  min-height: 200px;
+}
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
