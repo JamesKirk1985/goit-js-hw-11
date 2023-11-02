@@ -17,7 +17,6 @@ function handlerClick(evt) {
     arrPhoto = res.hits;
     addMarkup(arrPhoto);
     loadMore.hidden = false;
-    console.log(arrPhoto.length);
     if (arrPhoto.length === 0) {
       Report.failure(
         '',

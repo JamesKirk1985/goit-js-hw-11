@@ -9,7 +9,6 @@ async function getPhotos(value, page = 1) {
     const response = await axios.get(
       `https://pixabay.com/api/?key=${API_key}&q=${value}&image_type=${image_type}&orientation=${orientation}&safesearch=${safesearch}&per_page=40&page=${page}`
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(error);
