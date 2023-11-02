@@ -1,0 +1,2 @@
+.gallery{flex-wrap:wrap;gap:10px;display:flex}.photo-card{width:300px;flex-direction:column;gap:10px;margin-bottom:10px;display:flex}.photo{min-width:300px;min-height:200px;overflow:hidden}.info{justify-content:center;gap:10px;display:flex}.info-item{flex-direction:column;align-items:center;display:flex}
+/*# sourceMappingURL=index.e278f0a1.css.map */
