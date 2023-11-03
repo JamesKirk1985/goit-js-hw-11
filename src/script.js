@@ -11,46 +11,55 @@ loadMore.addEventListener('click', loadMoreFunc);
 function handlerClick(evt) {
   evt.preventDefault();
   galleryElement.innerHTML = '';
-  let q = formElement.searchQuery.value;
+  let q = formElement.searchQuery.value.trim();
+  if (q === '') {
+    return;
+  }
   let arrPhoto = [];
-  getPhotos(q).then(res => {
-    arrPhoto = res.hits;
-    addMarkup(arrPhoto);
-    loadMore.hidden = false;
-    if (arrPhoto.length === 0) {
-      Report.failure(
-        '',
-        'Sorry, there are no images matching your search query. Please try again.',
-        'Ok'
-      );
-      loadMore.hidden = true;
-      formElement.reset();
-    }
-    if (res.total <= page * 40) {
-      loadMore.hidden = true;
-    }
-  });
+  getPhotos(q)
+    .then(res => {
+      arrPhoto = res.hits;
+      addMarkup(arrPhoto);
+      loadMore.hidden = false;
+      if (arrPhoto.length === 0) {
+        Report.failure(
+          '',
+          'Sorry, there are no images matching your search query. Please try again.',
+          'Ok'
+        );
+        loadMore.hidden = true;
+        formElement.reset();
+      }
+      if (res.total <= page * 40) {
+        loadMore.hidden = true;
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
 function loadMoreFunc() {
   page += 1;
   let q = formElement.searchQuery.value;
   let arrPhoto = [];
-  getPhotos(q, page).then(res => {
-    arrPhoto = res.hits;
-    loadMore.hidden = false;
-    console.log(arrPhoto.length);
-    addMarkup(arrPhoto);
-    if (res.total <= page * 40) {
-      console.log(res.total);
-      loadMore.hidden = true;
-      Report.info(
-        '',
-        "We're sorry, but you've reached the end of search results.",
-        'Ok'
-      );
-    }
-  });
+  getPhotos(q, page)
+    .then(res => {
+      arrPhoto = res.hits;
+      loadMore.hidden = false;
+      addMarkup(arrPhoto);
+      if (res.total <= page * 40) {
+        loadMore.hidden = true;
+        Report.info(
+          '',
+          "We're sorry, but you've reached the end of search results.",
+          'Ok'
+        );
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 function addMarkup(arr) {
   const markup = arr
